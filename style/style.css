@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+}
+
+.hero-leaf {
+  position: absolute;
+  top: 8px;
+  width: min(24vw, 220px);
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+.hero-leaf-left {
+  left: 0;
+}
+
+.hero-leaf-right {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-leaf {
+    opacity: 0.55;
+  }
+}
