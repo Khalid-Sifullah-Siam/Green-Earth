@@ -1,161 +1,125 @@
 # Green Earth
 
-## 🌴 API Endpoints
+Green Earth is a responsive, front-end tree marketplace and awareness website built with HTML, Tailwind CSS, DaisyUI, and vanilla JavaScript. It lets users browse trees by category, search and sort products, view plant details in a modal, manage a shopping cart, and send a contact message.
 
-## 1. Get 🌴 All Categories
+## Overview
 
-```bash
-https://openapi.programming-hero.com/api/categories
+This project focuses on creating a polished, user-friendly experience for a sustainable shopping concept. It uses a public API to load tree categories and plant listings dynamically, so the catalog can be updated without changing the UI code.
+
+## Features
+
+- Responsive landing page with a clean, nature-inspired design
+- Dynamic category loading from an external API
+- Product browsing with search and sort controls
+- Product details modal for each tree
+- Client-side cart with quantity controls and subtotal calculation
+- Checkout flow with a success message
+- Simple contact form interaction
+- Smooth scrolling and lightweight UI animations from Tailwind/DaisyUI components
+
+## Tech Stack
+
+- HTML5
+- CSS3
+- Tailwind CSS
+- DaisyUI
+- Vanilla JavaScript
+- Fetch API
+
+## Project Structure
+
+```text
+Green-Earth/
+|-- assets/
+|   |-- about.png
+|   |-- hero-leaf1.png
+|   `-- hero-leaf2.png
+|-- script/
+|   `-- script.js
+|-- style/
+|   `-- style.css
+|-- index.html
+|-- Green-Earth.fig
+`-- README.md
 ```
 
-**Response:**
+## Getting Started
 
-```json
-{
-  "status": true,
-  "message": "successfully fetched categories data",
-  "categories": [
-    {
-      "id": 1,
-      "category_name": "Fruit Tree",
-      "small_description": "Trees that bear edible fruits like mango, guava, and jackfruit."
-    },
-    {
-      "id": 2,
-      "category_name": "Flowering Tree",
-      "small_description": "Trees grown for their beautiful and fragrant flowers."
-    }
-  ]
-}
-```
+### Prerequisites
 
----
+- A modern web browser
+- A local static server is recommended for the best experience
 
-## 2. Get 🌴 All Plants
+> Opening the project with `file://` may block API requests in some browsers. Use a local server instead.
 
-```bash
-https://openapi.programming-hero.com/api/plants
-```
+### Run Locally
 
-**Response:**
+1. Clone the repository:
 
-```json
-{
-  "status": true,
-  "message": "successfully fetched plants data",
-  "plants": [
-    {
-      "id": 1,
-      "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
-      "name": "Mango Tree",
-      "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
-      "category": "Fruit Tree",
-      "price": 500
-    },
-    {
-      "id": 2,
-      "image": "https://i.ibb.co.com/WNbbx3rn/guava-min.jpg",
-      "name": "Guava Tree",
-      "description": "A hardy fruit tree that grows in various climates, yielding guavas packed with Vitamin C. Its low maintenance nature makes it a favorite for home gardens.",
-      "category": "Fruit Tree",
-      "price": 350
-    },
-    {
-      "id": 3,
-      "image": "https://i.ibb.co.com/xt98PwZq/jackfruit-min.jpg",
-      "name": "Jackfruit Tree",
-      "description": "A large tropical tree that bears the world's biggest fruit, the jackfruit. Its sweet and aromatic flesh is both nutritious and filling, and the tree itself provides generous shade.",
-      "category": "Fruit Tree",
-      "price": 800
-    },
-    {
-      "id": 4,
-      "image": "https://i.ibb.co.com/1YzsVWjm/Gulmohar-min.jpg",
-      "name": "Gulmohar",
-      "description": "Known as the 'Flame of the Forest', this tree bursts into a vibrant display of red flowers every summer. Perfect for beautifying avenues and gardens.",
-      "category": "Flowering Tree",
-      "price": 400
-    },
-    {
-      "id": 5,
-      "image": "https://i.ibb.co.com/qY8qS7YN/champa-min.jpg",
-      "name": "Champa",
-      "description": "A fragrant flowering tree that adorns gardens with its delicate white blossoms. Widely cherished in traditional rituals and perfumery.",
-      "category": "Flowering Tree",
-      "price": 300
-    }
-  ]
-}
-```
+   ```bash
+   git clone https://github.com/Khalid-Sifullah-Siam/Green-Earth
+   cd Green-Earth
+   ```
 
----
+2. Start a local server using any of the following options:
 
-## 3. Get 🌴 Plants by Category
+   - VS Code Live Server
+   - Python:
 
-```bash
-https://openapi.programming-hero.com/api/category/${id}
-```
+     ```bash
+     python -m http.server 8000
+     ```
 
-Example:
+   - Node.js:
 
-```bash
-https://openapi.programming-hero.com/api/category/1
-```
+     ```bash
+     npx serve .
+     ```
 
-**Response:**
+3. Open the site in your browser:
 
-```json
-{
-  "status": true,
-  "message": "successfully fetched plants data filtered by category",
-  "plants": [
-    {
-      "id": 1,
-      "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
-      "name": "Mango Tree",
-      "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
-      "category": "Fruit Tree",
-      "price": 500
-    },
-    {
-      "id": 2,
-      "image": "https://i.ibb.co.com/WNbbx3rn/guava-min.jpg",
-      "name": "Guava Tree",
-      "description": "A hardy fruit tree that grows in various climates, yielding guavas packed with Vitamin C. Its low maintenance nature makes it a favorite for home gardens.",
-      "category": "Fruit Tree",
-      "price": 350
-    }
-  ]
-}
-```
+   ```text
+   http://localhost:8000
+   ```
 
----
+## API Endpoints
 
-## 4. Get 🌴 Plant Details
+Green Earth uses the Programming Hero public API:
 
-```bash
-https://openapi.programming-hero.com/api/plant/${id}
-```
+- `GET https://openapi.programming-hero.com/api/categories`
+- `GET https://openapi.programming-hero.com/api/plants`
+- `GET https://openapi.programming-hero.com/api/category/{id}`
+- `GET https://openapi.programming-hero.com/api/plant/{id}`
 
-Example:
+### Example Usage
 
-```bash
-https://openapi.programming-hero.com/api/plant/1
-```
+- Load all categories to build the filter sidebar
+- Load all plants to show the main product grid
+- Load plants by category when a category button is selected
+- Load a single plant to show details in the modal
 
-**Response:**
+## How It Works
 
-```json
-{
-  "status": true,
-  "message": "successfully fetched plant data",
-  "plants": {
-    "id": 1,
-    "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
-    "name": "Mango Tree",
-    "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
-    "category": "Fruit Tree",
-    "price": 500
-  }
-}
-```
+- Categories are fetched on page load and rendered as filter buttons.
+- Plants are fetched and displayed in a responsive grid.
+- Search filters the visible products by name or category.
+- Sort options reorder products by name or price.
+- Cart actions update the item count, subtotal, and total price in real time.
+- Checkout clears the cart and shows a success alert.
+
+## Notes
+
+- The contact form is front-end only and displays a confirmation message after submission.
+- Cart data is stored in memory, so it resets on refresh.
+- The included `Green-Earth.fig` file is the Figma design source for the project.
+
+## Future Improvements
+
+- Persist cart data in local storage
+- Add form validation and backend submission for the contact form
+- Introduce a real checkout flow
+- Add reusable components and a build system if the project grows
+
+## License
+
+No license has been specified yet. Add one if you plan to share or distribute the project publicly.
