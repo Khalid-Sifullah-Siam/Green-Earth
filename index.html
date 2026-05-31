@@ -16,14 +16,36 @@
   </head>
   <body data-theme="light" class="bg-green-50 text-slate-800">
     <header class="sticky top-0 z-50 bg-green-800 text-white shadow-md">
-      <div class="mx-auto flex w-[min(1100px,calc(100%-32px))] items-center justify-between py-3">
-        <a class="text-lg font-extrabold tracking-wide" href="#">Green Earth</a>
-        <nav class="hidden gap-6 md:flex">
-          <a href="#about" class="text-sm font-semibold hover:text-green-100">About</a>
-          <a href="#shop" class="text-sm font-semibold hover:text-green-100">Gallery</a>
-          <a href="#contact" class="text-sm font-semibold hover:text-green-100">Contact</a>
-        </nav>
-        <button id="cartBadgeButton" class="btn btn-warning btn-xs sm:btn-sm">Cart (0)</button>
+      <div class="mx-auto w-[min(1100px,calc(100%-32px))]">
+        <div class="flex flex-wrap items-center gap-3 py-3 lg:flex-nowrap">
+          <a class="text-lg font-extrabold tracking-wide" href="#">Green Earth</a>
+          <div class="ml-auto flex items-center gap-2 md:order-3 md:ml-auto">
+            <button
+              id="navToggleButton"
+              type="button"
+              class="btn btn-ghost btn-sm text-white md:hidden"
+              aria-controls="primaryNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation menu"
+            >
+              <svg id="navOpenIcon" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg id="navCloseIcon" viewBox="0 0 24 24" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+            <button id="cartBadgeButton" class="btn btn-warning btn-xs sm:btn-sm">Cart (0)</button>
+          </div>
+          <nav
+            id="primaryNav"
+            class="hidden w-full flex-col gap-2 border-t border-white/10 pt-3 text-sm font-semibold md:order-2 md:flex md:w-auto md:flex-row md:items-center md:gap-6 md:border-0 md:pt-0 lg:flex-1 lg:justify-center"
+          >
+            <a href="#about" class="rounded-md px-2 py-1 transition-colors hover:bg-white/10 hover:text-green-100 md:px-0 md:hover:bg-transparent">About</a>
+            <a href="#shop" class="rounded-md px-2 py-1 transition-colors hover:bg-white/10 hover:text-green-100 md:px-0 md:hover:bg-transparent">Gallery</a>
+            <a href="#contact" class="rounded-md px-2 py-1 transition-colors hover:bg-white/10 hover:text-green-100 md:px-0 md:hover:bg-transparent">Contact</a>
+          </nav>
+        </div>
       </div>
     </header>
 

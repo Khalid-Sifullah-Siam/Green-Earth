@@ -27,11 +27,40 @@ const elements = {
   statOrders: document.getElementById("statOrders"),
   contactForm: document.getElementById("contactForm"),
   contactFeedback: document.getElementById("contactFeedback"),
+  navToggleButton: document.getElementById("navToggleButton"),
+  primaryNav: document.getElementById("primaryNav"),
+  navOpenIcon: document.getElementById("navOpenIcon"),
+  navCloseIcon: document.getElementById("navCloseIcon"),
 };
 
 const API_BASE = "https://openapi.programming-hero.com/api";
+const desktopNavQuery = window.matchMedia("(min-width: 768px)");
 
 const formatCurrency = (value) => `$${Number(value).toLocaleString()}`;
+
+const closePrimaryNav = () => {
+  elements.primaryNav.classList.add("hidden");
+  elements.primaryNav.classList.remove("flex");
+  elements.navToggleButton.setAttribute("aria-expanded", "false");
+  elements.navOpenIcon.classList.remove("hidden");
+  elements.navCloseIcon.classList.add("hidden");
+};
+
+const openPrimaryNav = () => {
+  elements.primaryNav.classList.remove("hidden");
+  elements.primaryNav.classList.add("flex");
+  elements.navToggleButton.setAttribute("aria-expanded", "true");
+  elements.navOpenIcon.classList.add("hidden");
+  elements.navCloseIcon.classList.remove("hidden");
+};
+
+const togglePrimaryNav = () => {
+  if (elements.primaryNav.classList.contains("hidden")) {
+    openPrimaryNav();
+  } else {
+    closePrimaryNav();
+  }
+};
 
 const showSpinner = () => {
   elements.spinner.classList.remove("hidden");
@@ -302,7 +331,7 @@ const loadCategories = async () => {
 };
 
 const handleProductsClick = (event) => {
-  const trigger = event.target.closest("[data-action]");
+  const trigger = event.target instanceof Element ? event.target.closest("[data-action]") : null;
   if (!trigger) return;
 
   const action = trigger.dataset.action;
@@ -316,7 +345,7 @@ const handleProductsClick = (event) => {
 };
 
 const handleCartClick = (event) => {
-  const trigger = event.target.closest("[data-action]");
+  const trigger = event.target instanceof Element ? event.target.closest("[data-action]") : null;
   if (!trigger) return;
 
   const action = trigger.dataset.action;
@@ -362,6 +391,29 @@ const bindEvents = () => {
     document.querySelector(".cart-panel").scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  elements.navToggleButton.addEventListener("click", () => {
+    if (desktopNavQuery.matches) return;
+    togglePrimaryNav();
+  });
+
+  elements.primaryNav.addEventListener("click", (event) => {
+    if (desktopNavQuery.matches) return;
+    const link = event.target instanceof Element ? event.target.closest("a") : null;
+    if (link) {
+      closePrimaryNav();
+    }
+  });
+
+  const handleNavBreakpointChange = () => {
+    closePrimaryNav();
+  };
+
+  if (typeof desktopNavQuery.addEventListener === "function") {
+    desktopNavQuery.addEventListener("change", handleNavBreakpointChange);
+  } else {
+    desktopNavQuery.addListener(handleNavBreakpointChange);
+  }
+
   elements.contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
     elements.contactFeedback.textContent = "Thanks. We received your message.";
@@ -371,6 +423,7 @@ const bindEvents = () => {
 
 const init = async () => {
   bindEvents();
+  closePrimaryNav();
   setActiveCategory("allTreesBtn");
   renderCart();
   await Promise.all([loadCategories(), loadAllPlants()]);
